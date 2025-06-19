@@ -1,103 +1,143 @@
-import Image from "next/image";
+'use client';
+import { useState } from 'react';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Link from 'next/link';
+
+const courses = Array.from({ length: 20 }, (_, i) => ({
+  title: `Real Estate Masterclass ${i + 1}`,
+  provider: "BuyNclose",
+  level: ["Beginner", "Intermediate", "Advanced"][i % 3],
+  duration: ["1-4 Weeks", "1-3 Months", "3+ Months"][i % 3],
+  category: ["Investment", "Management", "Finance"][i % 3],
+  language: "English",
+  image: `/course${(i % 3) + 1}.jpg`
+}));
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [search, setSearch] = useState("");
+  const [level, setLevel] = useState("");
+  const [duration, setDuration] = useState("");
+  const [category, setCategory] = useState("");
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+  const filtered = courses.filter(c =>
+    c.title.toLowerCase().includes(search.toLowerCase()) &&
+    (level ? c.level === level : true) &&
+    (duration ? c.duration === duration : true) &&
+    (category ? c.category === category : true)
+  );
+
+  return (
+    <div>
+      <Header />
+
+      {/* Main Section */}
+      <div style={{ display: 'flex', padding: '40px', gap: '30px' }}>
+        {/* Sidebar Filters */}
+        <aside style={{ minWidth: '250px', borderRight: '1px solid #eee', paddingRight: '20px' }}>
+          <h3 style={{ marginBottom: '15px', fontSize: '18px', fontWeight: 600 }}>Filters</h3>
+
+          <label style={{ display: 'block', margin: '15px 0 5px' }}>Level</label>
+          <select value={level} onChange={e => setLevel(e.target.value)} style={{ width: '100%', padding: '8px' }}>
+            <option value="">All</option>
+            <option>Beginner</option>
+            <option>Intermediate</option>
+            <option>Advanced</option>
+          </select>
+
+          <label style={{ display: 'block', margin: '15px 0 5px' }}>Duration</label>
+          <select value={duration} onChange={e => setDuration(e.target.value)} style={{ width: '100%', padding: '8px' }}>
+            <option value="">All</option>
+            <option>1-4 Weeks</option>
+            <option>1-3 Months</option>
+            <option>3+ Months</option>
+          </select>
+
+          <label style={{ display: 'block', margin: '15px 0 5px' }}>Category</label>
+          <select value={category} onChange={e => setCategory(e.target.value)} style={{ width: '100%', padding: '8px' }}>
+            <option value="">All</option>
+            <option>Investment</option>
+            <option>Management</option>
+            <option>Finance</option>
+          </select>
+        </aside>
+
+        {/* Course Listings */}
+        <section style={{ flex: 1 }}>
+          {/* Search */}
+          <div style={{ textAlign: 'right', marginBottom: '20px' }}>
+            <input
+              type="text"
+              placeholder="Search courses..."
+              value={search}
+              onChange={e => setSearch(e.target.value)}
+              style={{
+                padding: '10px',
+                fontSize: '16px',
+                width: '300px',
+                border: '1px solid #ccc',
+                borderRadius: '5px'
+              }}
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+          </div>
+
+          {/* Grid */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+            gap: '20px'
+          }}>
+            {filtered.map((course, i) => (
+              <div key={i} style={{
+                border: '1px solid #eee',
+                borderRadius: '8px',
+                overflow: 'hidden',
+                backgroundColor: '#fff',
+                boxShadow: '0 2px 5px rgba(0,0,0,0.05)'
+              }}>
+                <img src={course.image} alt={course.title} style={{ width: '100%', height: '160px', objectFit: 'cover' }} />
+                <div style={{ padding: '15px' }}>
+                  <h4 style={{ fontSize: '16px', fontWeight: 600, marginBottom: '5px' }}>{course.title}</h4>
+                  <p style={{ margin: '2px 0', fontSize: '14px', color: '#555' }}>{course.provider}</p>
+                  <p style={{ margin: '2px 0', fontSize: '13px', color: '#777' }}>Level: {course.level}</p>
+                  <p style={{ margin: '2px 0', fontSize: '13px', color: '#777' }}>Duration: {course.duration}</p>
+                  <p style={{ margin: '2px 0', fontSize: '13px', color: '#777' }}>Category: {course.category}</p>
+                 import Link from 'next/link'; // ensure this is at the top
+
+...
+
+<Link
+  href={`/signup?course=${encodeURIComponent(course.title)}`}
+  style={{
+    marginTop: '10px',
+    display: 'inline-block',
+    textAlign: 'center',
+    padding: '8px',
+    width: '100%',
+    backgroundColor: '#0070f3',
+    color: 'white',
+    textDecoration: 'none',
+    borderRadius: '5px'
+  }}
+>
+  Enroll Now
+</Link>
+
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Empty State */}
+          {filtered.length === 0 && (
+            <p style={{ marginTop: '30px', color: '#888', textAlign: 'center' }}>
+              No courses found.
+            </p>
+          )}
+        </section>
+      </div>
+
+      <Footer />
     </div>
   );
 }
