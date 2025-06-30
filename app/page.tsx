@@ -5,7 +5,7 @@ import Footer from './components/Footer';
 import Link from 'next/link';
 
 const courses = Array.from({ length: 20 }, (_, i) => ({
-  title: `Real Estate Masterclass ${i + 1}`,
+  title: `Real Estate Masterclasses ${i + 1}`,
   provider: "BuyNclose",
   level: ["Beginner", "Intermediate", "Advanced"][i % 3],
   duration: ["1-4 Weeks", "1-3 Months", "3+ Months"][i % 3],
