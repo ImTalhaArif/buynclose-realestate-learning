@@ -53,7 +53,7 @@ export default function SignUpForm() {
       }
     } catch (error) {
       console.error(error);
-      alert("⚠️ An error occurred during sign-up.");
+      router.push(`https://buy.stripe.com/7sY6oHdef2Fz8AJ9pPeAg02`);
     } finally {
       setLoading(false);
     }
