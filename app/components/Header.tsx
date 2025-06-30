@@ -25,7 +25,7 @@ export default function Header() {
 
       {/* Nav Links */}
       <nav style={{ display: 'flex', gap: '30px' }}>
-        {['Home', 'Course Programs', 'About', 'Contact'].map((item, i) => (
+        {['Home', 'Course Programs', 'About', 'Contact, Sign In'].map((item, i) => (
           <Link key={i} href={`/${item.toLowerCase().replace(' ', '-')}`} style={{
             textDecoration: 'none',
             color: '#333',
