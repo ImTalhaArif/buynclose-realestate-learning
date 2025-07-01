@@ -1,143 +1,76 @@
 'use client';
-import { useState } from 'react';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import Link from 'next/link';
 
-const courses = Array.from({ length: 20 }, (_, i) => ({
-  title: `Real Estate Masterclasses ${i + 1}`,
-  provider: "BuyNclose",
-  level: ["Beginner", "Intermediate", "Advanced"][i % 3],
-  duration: ["1-4 Weeks", "1-3 Months", "3+ Months"][i % 3],
-  category: ["Investment", "Management", "Finance"][i % 3],
-  language: "English",
-  image: `/course${(i % 3) + 1}.jpg`
-}));
+import { useState } from 'react'; import Header from './components/Header'; import Footer from './components/Footer'; import Link from 'next/link';
 
-export default function Home() {
-  const [search, setSearch] = useState("");
-  const [level, setLevel] = useState("");
-  const [duration, setDuration] = useState("");
-  const [category, setCategory] = useState("");
+const topCourses = Array.from({ length: 5 }, (_, i) => ({ title: Real Estate Masterclass ${i + 1}, provider: "BuyNclose", level: ["Beginner", "Intermediate", "Advanced"][i % 3], duration: ["1-4 Weeks", "1-3 Months", "3+ Months"][i % 3], category: ["Investment", "Management", "Finance"][i % 3], language: "English", image: /course${(i % 3) + 1}.jpg }));
 
-  const filtered = courses.filter(c =>
-    c.title.toLowerCase().includes(search.toLowerCase()) &&
-    (level ? c.level === level : true) &&
-    (duration ? c.duration === duration : true) &&
-    (category ? c.category === category : true)
-  );
+export default function Dashboard() { return ( <div> <Header />
 
-  return (
-    <div>
-      <Header />
-
-      {/* Main Section */}
-      <div style={{ display: 'flex', padding: '40px', gap: '30px' }}>
-        {/* Sidebar Filters */}
-        <aside style={{ minWidth: '250px', borderRight: '1px solid #eee', paddingRight: '20px' }}>
-          <h3 style={{ marginBottom: '15px', fontSize: '18px', fontWeight: 600 }}>Filters</h3>
-
-          <label style={{ display: 'block', margin: '15px 0 5px' }}>Level</label>
-          <select value={level} onChange={e => setLevel(e.target.value)} style={{ width: '100%', padding: '8px' }}>
-            <option value="">All</option>
-            <option>Beginner</option>
-            <option>Intermediate</option>
-            <option>Advanced</option>
-          </select>
-
-          <label style={{ display: 'block', margin: '15px 0 5px' }}>Duration</label>
-          <select value={duration} onChange={e => setDuration(e.target.value)} style={{ width: '100%', padding: '8px' }}>
-            <option value="">All</option>
-            <option>1-4 Weeks</option>
-            <option>1-3 Months</option>
-            <option>3+ Months</option>
-          </select>
-
-          <label style={{ display: 'block', margin: '15px 0 5px' }}>Category</label>
-          <select value={category} onChange={e => setCategory(e.target.value)} style={{ width: '100%', padding: '8px' }}>
-            <option value="">All</option>
-            <option>Investment</option>
-            <option>Management</option>
-            <option>Finance</option>
-          </select>
-        </aside>
-
-        {/* Course Listings */}
-        <section style={{ flex: 1 }}>
-          {/* Search */}
-          <div style={{ textAlign: 'right', marginBottom: '20px' }}>
-            <input
-              type="text"
-              placeholder="Search courses..."
-              value={search}
-              onChange={e => setSearch(e.target.value)}
-              style={{
-                padding: '10px',
-                fontSize: '16px',
-                width: '300px',
-                border: '1px solid #ccc',
-                borderRadius: '5px'
-              }}
-            />
-          </div>
-
-          {/* Grid */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-            gap: '20px'
-          }}>
-            {filtered.map((course, i) => (
-              <div key={i} style={{
-                border: '1px solid #eee',
-                borderRadius: '8px',
-                overflow: 'hidden',
-                backgroundColor: '#fff',
-                boxShadow: '0 2px 5px rgba(0,0,0,0.05)'
-              }}>
-                <img src={course.image} alt={course.title} style={{ width: '100%', height: '160px', objectFit: 'cover' }} />
-                <div style={{ padding: '15px' }}>
-                  <h4 style={{ fontSize: '16px', fontWeight: 600, marginBottom: '5px' }}>{course.title}</h4>
-                  <p style={{ margin: '2px 0', fontSize: '14px', color: '#555' }}>{course.provider}</p>
-                  <p style={{ margin: '2px 0', fontSize: '13px', color: '#777' }}>Level: {course.level}</p>
-                  <p style={{ margin: '2px 0', fontSize: '13px', color: '#777' }}>Duration: {course.duration}</p>
-                  <p style={{ margin: '2px 0', fontSize: '13px', color: '#777' }}>Category: {course.category}</p>
-                 import Link from 'next/link'; // ensure this is at the top
-
-...
-
-<Link
-  href={`/signup?course=${encodeURIComponent(course.title)}`}
-  style={{
-    marginTop: '10px',
-    display: 'inline-block',
-    textAlign: 'center',
-    padding: '8px',
-    width: '100%',
-    backgroundColor: '#0070f3',
-    color: 'white',
-    textDecoration: 'none',
-    borderRadius: '5px'
-  }}
->
-  Enroll Now
-</Link>
-
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Empty State */}
-          {filtered.length === 0 && (
-            <p style={{ marginTop: '30px', color: '#888', textAlign: 'center' }}>
-              No courses found.
-            </p>
-          )}
-        </section>
-      </div>
-
-      <Footer />
+{/* Carousel Section */}
+  <section className="w-full overflow-hidden relative">
+    <div className="w-full h-64 sm:h-80 md:h-[400px] bg-gray-200 flex items-center justify-center">
+      <p className="text-gray-500 text-xl">[Carousel Placeholder for HASH Images]</p>
     </div>
-  );
-}
+  </section>
+
+  {/* Introduction Section */}
+  <section className="px-6 md:px-20 py-12 bg-white text-center">
+    <h1 className="text-3xl md:text-4xl font-bold mb-4">Welcome to BuyNclose Learning Portal</h1>
+    <p className="text-gray-600 text-lg max-w-3xl mx-auto">
+      Empowering aspiring and seasoned real estate professionals with top-quality masterclasses, expert guidance, and practical knowledge.
+    </p>
+  </section>
+
+  {/* What We Offer Section */}
+  <section className="px-6 md:px-20 py-12 bg-gray-50">
+    <h2 className="text-2xl font-semibold mb-6 text-center">What We Offer</h2>
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+      <div className="bg-white shadow-md rounded-2xl p-6">
+        <h3 className="text-xl font-bold mb-2">Expert Instructors</h3>
+        <p className="text-gray-600">Learn from industry leaders with years of experience in real estate.</p>
+      </div>
+      <div className="bg-white shadow-md rounded-2xl p-6">
+        <h3 className="text-xl font-bold mb-2">Flexible Learning</h3>
+        <p className="text-gray-600">Access anytime, anywhere with our online learning system.</p>
+      </div>
+      <div className="bg-white shadow-md rounded-2xl p-6">
+        <h3 className="text-xl font-bold mb-2">Career Growth</h3>
+        <p className="text-gray-600">Boost your knowledge and career with certified courses.</p>
+      </div>
+    </div>
+  </section>
+
+  {/* Top Courses Section */}
+  <section className="px-6 md:px-20 py-12">
+    <h2 className="text-2xl font-semibold mb-6 text-center">Top Courses</h2>
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      {topCourses.map((course, index) => (
+        <div key={index} className="bg-white shadow-md rounded-2xl overflow-hidden">
+          <img
+            src={course.image}
+            alt={course.title}
+            className="w-full h-48 object-cover"
+          />
+          <div className="p-4">
+            <h3 className="text-lg font-semibold mb-1">{course.title}</h3>
+            <p className="text-sm text-gray-500 mb-1">{course.provider}</p>
+            <p className="text-sm text-gray-600 mb-1">Level: {course.level}</p>
+            <p className="text-sm text-gray-600 mb-1">Duration: {course.duration}</p>
+            <p className="text-sm text-gray-600 mb-3">Category: {course.category}</p>
+            <Link
+              href={`/signup?course=${encodeURIComponent(course.title)}`}
+              className="block w-full text-center bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700"
+            >
+              Enroll Now
+            </Link>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <Footer />
+</div>
+
+); }
+
