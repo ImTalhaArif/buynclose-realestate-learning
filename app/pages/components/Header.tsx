@@ -25,9 +25,9 @@ export default function Header() {
       ]
     : [
         { name: 'Home', href: '/' },
-        { name: 'Course Programs', href: '/course-programs' },
+        { name: 'Course Programs', href: '/Course-programs' },
         { name: 'Get Help?', href: '/help' },
-        { name: 'Sign In', href: '/sign-in' },
+        { name: 'Sign In', href: '/student-dashboard' },
         { name: 'About Us', href: '/about' },
       ];
 
