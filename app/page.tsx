@@ -1,7 +1,7 @@
 'use client';
 
-import Header from '../pages/components/Header';
-import Footer from '../pages/components/Footer';
+import Header from './pages/components/Header';
+import Footer from './pages/components/Footer';
 import Link from 'next/link';
 
 const topCourses = Array.from({ length: 5 }, (_, i) => ({
