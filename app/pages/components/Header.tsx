@@ -46,7 +46,7 @@ export default function Header() {
                 className="rounded-full"
               />
             </Link>
-            <span className="text-xl font-semibold text-blue-400">BuyNclose</span>
+            <span className="text-xl font-semibold text-blue-400">BuynClose</span>
           </div>
 
           {/* Desktop Nav */}
