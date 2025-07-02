@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
+declare const bootstrap: any;
 export default function Header() {
   // Auto-collapse navbar on nav-link click (mobile)
   useEffect(() => {
