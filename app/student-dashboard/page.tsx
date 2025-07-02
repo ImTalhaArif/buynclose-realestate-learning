@@ -59,13 +59,13 @@ return ( <div className="min-h-screen flex flex-col"> <Header />
               <h4 className="font-semibold mb-2 text-sm">Chapters</h4>
               <div className="grid grid-cols-2 gap-2">
                 {Array.from({ length: 12 }, (_, i) => (
-                  <button
+                  <a href="/chapters"><button
                     key={i}
                     onClick={() => alert(`Go to Chapter ${i + 1}`)}
                     className="text-sm bg-white border rounded px-3 py-1 hover:bg-blue-100"
                   >
                     Chapter {i + 1}
-                  </button>
+                  </button></a>
                 ))}
               </div>
             </div>
