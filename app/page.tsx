@@ -20,12 +20,21 @@ export default function Dashboard() {
       <Header />
 
       {/* Carousel Section */}
-      <section className="w-full overflow-hidden relative">
-        <div className="w-full h-64 sm:h-80 md:h-[400px] bg-gray-200 flex items-center justify-center">
-          <p className="text-gray-500 text-xl">[Carousel Placeholder for HASH Images]</p>
-        </div>
-      </section>
-
+     <section className="w-full overflow-hidden relative">
+  <div className="w-full h-64 sm:h-80 md:h-[400px] bg-gray-200 flex items-center justify-center overflow-x-auto space-x-4 p-4">
+    <img
+      src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQE..." // your base64 string
+      alt="Image 1"
+      className="h-full object-cover rounded"
+    />
+    <img
+      src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA..." // another base64 string
+      alt="Image 2"
+      className="h-full object-cover rounded"
+    />
+    {/* Add more <img> tags if needed */}
+  </div>
+</section>
       {/* Introduction Section */}
       <section className="px-6 md:px-20 py-12 bg-white text-center">
         <h1 className="text-3xl md:text-4xl font-bold mb-4">Welcome to BuyNclose Learning Portal</h1>
