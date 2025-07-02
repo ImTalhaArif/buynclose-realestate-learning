@@ -6,7 +6,6 @@ import Image from 'next/image';
 declare const bootstrap: any;
 
 export default function Header() {
-  // Auto-close mobile nav on link click
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const navLinks = document.querySelectorAll('.nav-link');
@@ -32,7 +31,7 @@ export default function Header() {
           </a>
         </Link>
 
-        {/* Hamburger toggle */}
+        {/* Hamburger */}
         <button
           className="navbar-toggler"
           type="button"
@@ -47,10 +46,19 @@ export default function Header() {
 
         {/* Collapsible menu */}
         <div
-          className="collapse navbar-collapse bg-white text-dark py-3 px-3 rounded shadow z-3"
           id="mainNavbar"
+          className="collapse navbar-collapse"
+          style={{
+            backgroundColor: '#ffffff',
+            color: '#000000',
+            padding: '1rem',
+            zIndex: 9999,
+            borderRadius: '0.5rem',
+            boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+            transition: 'all 0.3s ease-in-out'
+          }}
         >
-          <ul className="navbar-nav ms-auto mb-2 mb-md-0">
+          <ul className="navbar-nav ms-auto mb-2 mb-md-0 w-100">
             {[
               { name: 'Home', href: '/' },
               { name: 'Course Programs', href: '/course-programs' },
@@ -60,7 +68,18 @@ export default function Header() {
             ].map((item, i) => (
               <li className="nav-item" key={i}>
                 <Link href={item.href} legacyBehavior>
-                  <a className="nav-link text-dark fw-medium py-2">{item.name}</a>
+                  <a
+                    className="nav-link fw-medium"
+                    style={{
+                      color: '#000000',
+                      padding: '0.5rem 1rem',
+                      borderRadius: '0.25rem',
+                      display: 'block',
+                      textDecoration: 'none'
+                    }}
+                  >
+                    {item.name}
+                  </a>
                 </Link>
               </li>
             ))}
