@@ -62,7 +62,7 @@ return ( <div className="min-h-screen flex flex-col"> <Header />
                 {Array.from({ length: 12 }, (_, i) => (
                  <Link
   key={i}
-  href={`/chapter-page?course=Real Estate Masterclass&chapter=${i + 1}`}
+  href={`/chapters?course=Real Estate Masterclass&chapter=${i + 1}`}
 >
   <button className="text-sm bg-white border rounded px-3 py-1 hover:bg-blue-100">
     Chapter {i + 1}
