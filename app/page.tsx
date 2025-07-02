@@ -23,12 +23,17 @@ export default function Dashboard() {
      <section className="w-full overflow-hidden relative">
   <div className="w-full h-64 sm:h-80 md:h-[400px] bg-gray-200 flex items-center justify-center overflow-x-auto space-x-4 p-4">
     <img
-      src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQE..." // your base64 string
+      src="/buynclose1.jpg" // your base64 string
       alt="Image 1"
       className="h-full object-cover rounded"
     />
     <img
-      src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA..." // another base64 string
+      src="/buynclose2.jpg" // another base64 string
+      alt="Image 2"
+      className="h-full object-cover rounded"
+    />
+<img
+  src="/buynclose3.jpg" // another base64 string
       alt="Image 2"
       className="h-full object-cover rounded"
     />
