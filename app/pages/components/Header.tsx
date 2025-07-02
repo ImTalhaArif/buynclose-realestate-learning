@@ -39,7 +39,7 @@ export default function Header() {
           <div className="flex items-center gap-2">
             <Link href="/">
               <Image
-                src="../components/logo.png"
+                src="/logo.png"
                 alt="BuyNclose Logo"
                 width={40}
                 height={40}
