@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react'; import Header from '../pages/components/Header'; import Footer from '../pages/components/Footer';
+import Link from 'next/link';
 
 const enrolledCourses = [ { title: 'Real Estate Masterclass: Basics to Pro', progress: 45, category: 'Investment', level: 'Intermediate', image: '/course1.jpg', }, { title: 'Property Management Essentials', progress: 80, category: 'Management', level: 'Advanced', image: '/course2.jpg', }, ];
 
@@ -59,13 +60,14 @@ return ( <div className="min-h-screen flex flex-col"> <Header />
               <h4 className="font-semibold mb-2 text-sm">Chapters</h4>
               <div className="grid grid-cols-2 gap-2">
                 {Array.from({ length: 12 }, (_, i) => (
-                  <a href="/chapters"><button
-                    key={i}
-                    onClick={() => alert(`Go to Chapter ${i + 1}`)}
-                    className="text-sm bg-white border rounded px-3 py-1 hover:bg-blue-100"
-                  >
-                    Chapter {i + 1}
-                  </button></a>
+                 <Link
+  key={i}
+  href={`/chapter-page?course=Real Estate Masterclass&chapter=${i + 1}`}
+>
+  <button className="text-sm bg-white border rounded px-3 py-1 hover:bg-blue-100">
+    Chapter {i + 1}
+  </button>
+</Link>
                 ))}
               </div>
             </div>
