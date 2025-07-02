@@ -123,9 +123,11 @@ export default function StudentDashboard() {
                   <h4 className="font-semibold mb-2 text-sm">Chapters</h4>
                   <div className="grid grid-cols-2 gap-2">
                     {Array.from({ length: 12 }, (_, i) => (
-                      <Link
+                     Link
                         key={i}
-                        href={`/chapters?course=Start`}
+                        href={`/student-dashboard/chapters?course=${encodeURIComponent(
+                          course.title
+                        )}&chapter=${i + 1}`}
                       >
                         <button className="text-sm bg-white border rounded px-3 py-1 hover:bg-blue-100">
                           Chapter {i + 1}
