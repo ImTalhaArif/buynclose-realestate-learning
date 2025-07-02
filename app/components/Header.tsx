@@ -4,36 +4,30 @@ import Image from 'next/image';
 
 export default function Header() {
   return (
-    <nav className="navbar navbar-expand-md navbar-light bg-white sticky-top border-bottom shadow-sm px-3 px-md-5">
+    <nav className="navbar navbar-expand-md navbar-light bg-white border-bottom shadow-sm sticky-top px-3">
       <div className="container-fluid">
         {/* Logo */}
         <Link href="/" className="navbar-brand d-flex align-items-center gap-2">
-          <Image
-            src="/components/logo.png"
-            alt="BuyNclose Logo"
-            width={40}
-            height={40}
-            style={{ objectFit: 'contain' }}
-          />
+          <Image src="/components/logo.png" alt="Logo" width={40} height={40} />
           <span className="fw-bold text-primary fs-5">BuyNclose</span>
         </Link>
 
-        {/* Toggler */}
+        {/* Hamburger toggle button */}
         <button
           className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
-          data-bs-target="#navbarNavDropdown"
-          aria-controls="navbarNavDropdown"
+          data-bs-target="#mainNavbar"
+          aria-controls="mainNavbar"
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span className="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon" />
         </button>
 
-        {/* Links */}
-        <div className="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul className="navbar-nav ms-auto gap-2">
+        {/* Collapsible menu */}
+        <div className="collapse navbar-collapse" id="mainNavbar">
+          <ul className="navbar-nav ms-auto mb-2 mb-md-0">
             <li className="nav-item">
               <Link href="/" className="nav-link">
                 Home
