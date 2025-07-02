@@ -1,9 +1,10 @@
 'use client';
 
-import { useState } from 'react'; import import Header from '../pages/components/Header';
+import { useState } from 'react';
+import Header from '../pages/components/Header';
 import Footer from '../pages/components/Footer'; import Link from 'next/link';
 
-const topCourses = Array.from({ length: 5 }, (_, i) => ({ title: Real Estate Masterclass ${i + 1}, provider: "BuyNclose", level: ["Beginner", "Intermediate", "Advanced"][i % 3], duration: ["1-4 Weeks", "1-3 Months", "3+ Months"][i % 3], category: ["Investment", "Management", "Finance"][i % 3], language: "English", image: /course${(i % 3) + 1}.jpg }));
+const topCourses = Array.from({ length: 5 }, (_, i) => ({ title: "Real Estate Masterclass ${i + 1}", provider: "BuyNclose", level: ["Beginner", "Intermediate", "Advanced"][i % 3], duration: ["1-4 Weeks", "1-3 Months", "3+ Months"][i % 3], category: ["Investment", "Management", "Finance"][i % 3], language: "English", image: /course${(i % 3) + 1}.jpg }));
 
 export default function Dashboard() { return ( <div> <Header />
 
