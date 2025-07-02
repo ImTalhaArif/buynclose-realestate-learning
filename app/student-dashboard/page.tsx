@@ -125,9 +125,7 @@ export default function StudentDashboard() {
                     {Array.from({ length: 12 }, (_, i) => (
                       <Link
                         key={i}
-                        href={`/chapters?course=${encodeURIComponent(
-                          course.title
-                        )}&chapter=${i + 1}`}
+                        href={`/chapters?course=Start`}
                       >
                         <button className="text-sm bg-white border rounded px-3 py-1 hover:bg-blue-100">
                           Chapter {i + 1}
