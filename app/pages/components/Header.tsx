@@ -28,31 +28,31 @@ export default function Header() {
         </button>
 
         {/* Collapsible menu */}
-        <div className="collapse navbar-collapse" id="mainNavbar">
+        <div className="collapse navbar-collapse bg-white" id="mainNavbar">
           <ul className="navbar-nav ms-auto mb-2 mb-md-0">
             <li className="nav-item">
               <Link href="/" legacyBehavior>
-                <a className="nav-link">Home</a>
+                <a className="nav-link text-dark">Home</a>
               </Link>
             </li>
             <li className="nav-item">
               <Link href="/course-programs" legacyBehavior>
-                <a className="nav-link">Course Programs</a>
+                <a className="nav-link text-dark">Course Programs</a>
               </Link>
             </li>
             <li className="nav-item">
               <Link href="/about" legacyBehavior>
-                <a className="nav-link">About</a>
+                <a className="nav-link text-dark">About</a>
               </Link>
             </li>
             <li className="nav-item">
               <Link href="/contact" legacyBehavior>
-                <a className="nav-link">Contact</a>
+                <a className="nav-link text-dark">Contact</a>
               </Link>
             </li>
             <li className="nav-item">
               <Link href="/sign-in" legacyBehavior>
-                <a className="nav-link">Sign In</a>
+                <a className="nav-link text-dark">Sign In</a>
               </Link>
             </li>
           </ul>
