@@ -6,7 +6,11 @@ const enrolledCourses = [ { title: 'Real Estate Masterclass: Basics to Pro', pro
 
 export default function StudentDashboard() { const [loggedIn, setLoggedIn] = useState(false); const [email, setEmail] = useState(''); const [password, setPassword] = useState(''); const [error, setError] = useState(''); const [expandedCourse, setExpandedCourse] = useState<number | null>(null);
 
-const handleLogin = () => { if (email === 'johirving8383@gmail.com' && password === 'Tuneplay1!') { setLoggedIn(true); setError(''); } else { setError('Invalid email or password'); } };
+const handleLogin = () => if (email === 'johirving8383@gmail.com' && password === 'Tuneplay1!') {
+  sessionStorage.setItem('loggedIn', 'true'); // this sets session for header
+  setLoggedIn(true);
+  setError('');
+} else { setError('Invalid email or password'); } };
 
 const toggleChapters = (index: number) => { setExpandedCourse(expandedCourse === index ? null : index); };
 
