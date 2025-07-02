@@ -4,8 +4,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 declare const bootstrap: any;
+
 export default function Header() {
-  // Auto-collapse navbar on nav-link click (mobile)
+  // Auto-close mobile nav on link click
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const navLinks = document.querySelectorAll('.nav-link');
@@ -13,9 +14,7 @@ export default function Header() {
       navLinks.forEach((link) =>
         link.addEventListener('click', () => {
           if (navbarCollapse?.classList.contains('show')) {
-            new bootstrap.Collapse(navbarCollapse, {
-              toggle: true,
-            }).hide();
+            new bootstrap.Collapse(navbarCollapse).hide();
           }
         })
       );
@@ -23,7 +22,7 @@ export default function Header() {
   }, []);
 
   return (
-    <nav className="navbar navbar-expand-md navbar-light bg-white border-bottom shadow-sm sticky-top px-3">
+    <nav className="navbar navbar-expand-md navbar-light bg-white border-bottom shadow-sm sticky-top px-3 z-3">
       <div className="container-fluid">
         {/* Logo */}
         <Link href="/" legacyBehavior>
@@ -47,7 +46,10 @@ export default function Header() {
         </button>
 
         {/* Collapsible menu */}
-        <div className="collapse navbar-collapse bg-white" id="mainNavbar">
+        <div
+          className="collapse navbar-collapse bg-white text-dark py-3 px-3 rounded shadow z-3"
+          id="mainNavbar"
+        >
           <ul className="navbar-nav ms-auto mb-2 mb-md-0">
             {[
               { name: 'Home', href: '/' },
@@ -58,7 +60,7 @@ export default function Header() {
             ].map((item, i) => (
               <li className="nav-item" key={i}>
                 <Link href={item.href} legacyBehavior>
-                  <a className="nav-link text-dark fw-medium">{item.name}</a>
+                  <a className="nav-link text-dark fw-medium py-2">{item.name}</a>
                 </Link>
               </li>
             ))}
