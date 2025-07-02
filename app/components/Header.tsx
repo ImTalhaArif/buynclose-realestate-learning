@@ -15,20 +15,26 @@ export default function Header() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
+    <header className="sticky top-0 z-50 bg-white shadow-sm border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <Image src="/components/logo.png" alt="BuyNclose Logo" width={40} height={40} />
-            <span className="text-xl font-semibold text-blue-600">BuyNclose</span>
+          <Link href="/" className="flex items-center space-x-2">
+            <Image
+              src="/components/logo.png"
+              alt="BuyNclose Logo"
+              width={40}
+              height={40}
+              className="w-10 h-10 object-contain"
+            />
+            <span className="text-xl font-bold text-blue-600">BuyNclose</span>
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex space-x-8">
-            {navItems.map((item, i) => (
+          <nav className="hidden md:flex space-x-6">
+            {navItems.map((item, index) => (
               <Link
-                key={i}
+                key={index}
                 href={item.href}
                 className="text-gray-700 hover:text-blue-600 font-medium transition"
               >
@@ -37,7 +43,7 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* Mobile Menu Button */}
+          {/* Hamburger */}
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -71,14 +77,14 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mobile Nav Menu */}
+      {/* Mobile Nav */}
       {isOpen && (
-        <div className="md:hidden bg-white px-4 pb-4 pt-2 shadow">
-          {navItems.map((item, i) => (
+        <div className="md:hidden px-4 pt-2 pb-4 space-y-2 bg-white shadow">
+          {navItems.map((item, index) => (
             <Link
-              key={i}
+              key={index}
               href={item.href}
-              className="block py-2 text-gray-700 hover:text-blue-600 font-medium"
+              className="block text-gray-700 hover:text-blue-600 font-medium"
               onClick={() => setIsOpen(false)}
             >
               {item.name}
