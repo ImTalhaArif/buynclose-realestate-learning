@@ -81,7 +81,7 @@ export default function AssistancePage() {
 
       <main className="flex-1 px-4 py-6 max-w-xl mx-auto w-full">
         <h1 className="text-2xl sm:text-3xl font-bold mb-6 text-center text-blue-600">
-          AI Assistance – Ask Us Anything
+          I'm Barbara and I'll assist you with your doubts/queries – Ask Me Anything
         </h1>
 
         <div className="border rounded-lg bg-white shadow p-4 h-[500px] overflow-y-auto">
@@ -119,7 +119,7 @@ export default function AssistancePage() {
           <div ref={messagesEndRef} />
         </div>
 
-  <form onSubmit={handleSubmit} className="mt-4 w-full max-w-xl mx-auto flex gap-2">
+  <form onSubmit={handleSubmit} className="mt-4 mr-3 w-full max-w-xl mx-auto flex gap-2">
   <input
     type="text"
     value={input}
