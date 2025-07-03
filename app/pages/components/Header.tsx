@@ -20,13 +20,13 @@ export default function Header() {
     ? [
         { name: 'Home', href: '/' },
         { name: 'My Profile', href: '/profile' },
-        { name: 'Get Help?', href: '/help' },
+        { name: 'Get Help?', href: '/get-assistance' },
         { name: 'Log Out', href: '#logout' }, // Special case handled in onClick
       ]
     : [
         { name: 'Home', href: '/' },
         { name: 'Course Programs', href: '/Course-programs' },
-        { name: 'Get Help?', href: '/help' },
+        { name: 'Get Help?', href: '/get-assistance' },
         { name: 'Sign In', href: '/student-dashboard' },
         { name: 'About Us', href: '/about' },
       ];
