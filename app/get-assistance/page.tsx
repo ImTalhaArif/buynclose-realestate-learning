@@ -42,7 +42,7 @@ export default function AssistancePage() {
       return 'I am your AI Assistant, here to guide you through BuyNClose learning portal and answer all your questions.';
     }
 
-    return "I'm here to assist you with anything related to BuyNClose courses and platform.";
+    return "Ask me anything, let me assist you.";
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -119,7 +119,7 @@ export default function AssistancePage() {
           <div ref={messagesEndRef} />
         </div>
 
-  <form onSubmit={handleSubmit} className="mt-4 mr-3 w-full max-w-xl mx-auto flex gap-2">
+  <center><form onSubmit={handleSubmit} className="mt-4 mr-3 w-full max-w-xl mx-auto flex gap-2">
   <input
     type="text"
     value={input}
@@ -133,7 +133,7 @@ export default function AssistancePage() {
   >
     Send
   </button>
-</form>
+</form></center>
       </main>
 
       <Footer />
