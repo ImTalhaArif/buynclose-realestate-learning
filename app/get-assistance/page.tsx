@@ -119,21 +119,21 @@ export default function AssistancePage() {
           <div ref={messagesEndRef} />
         </div>
 
-        <form onSubmit={handleSubmit} className="mt-4 flex gap-2">
-          <input
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder="Type your question..."
-            className="flex-1 p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none"
-          />
-          <button
-            type="submit"
-            className="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700"
-          >
-            Send
-          </button>
-        </form>
+  <form onSubmit={handleSubmit} className="mt-4 w-full max-w-xl mx-auto flex gap-2">
+  <input
+    type="text"
+    value={input}
+    onChange={(e) => setInput(e.target.value)}
+    placeholder="Type your question..."
+    className="flex-1 p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none text-sm"
+  />
+  <button
+    type="submit"
+    className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 whitespace-nowrap text-sm"
+  >
+    Send
+  </button>
+</form>
       </main>
 
       <Footer />
