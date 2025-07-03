@@ -42,7 +42,7 @@ export default function AssistancePage() {
       return 'I am your AI Assistant, here to guide you through BuyNClose learning portal and answer all your questions.';
     }
 
-    return "Ask me anything, let me assist you.";
+    return ""I'm here to assist you with anything related to BuyNClose courses and platform. ";
   };
 
   const handleSubmit = (e: React.FormEvent) => {
