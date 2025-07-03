@@ -81,7 +81,7 @@ export default function AssistancePage() {
 
       <main className="flex-1 px-4 py-6 max-w-xl mx-auto w-full">
         <h1 className="text-2xl sm:text-3xl font-bold mb-6 text-center text-blue-600">
-          I'm Barbara and I'll assist you with your doubts/queries – Ask Me Anything
+          Ask me anything, Let me assist you
         </h1>
 
         <div className="border rounded-lg bg-white shadow p-4 h-[500px] overflow-y-auto">
