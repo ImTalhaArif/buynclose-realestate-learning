@@ -1,70 +1,115 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react'; import Header from '../pages/components/Header'; import Footer from '../pages/components/Footer';
+import { useEffect, useRef, useState } from 'react';
+import Header from '../pages/components/Header';
+import Footer from '../pages/components/Footer';
 
-interface Message { sender: 'user' | 'bot'; text: string; }
+interface Message {
+  sender: 'user' | 'bot';
+  text: string;
+}
 
-export default function GetAssistance() { const [messages, setMessages] = useState<Message[]>([]); const [input, setInput] = useState(''); const chatEndRef = useRef<HTMLDivElement>(null);
+export default function AssistancePage() {
+  const [input, setInput] = useState('');
+  const [messages, setMessages] = useState<Message[]>([]);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
-const scrollToBottom = () => { chatEndRef.current?.scrollIntoView({ behavior: 'smooth' }); };
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
 
-useEffect(() => { scrollToBottom(); }, [messages]);
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
-const sendMessage = async () => { if (!input.trim()) return; const userMessage: Message = { sender: 'user', text: input }; setMessages((prev) => [...prev, userMessage]); setInput('');
+  const getBotResponse = (userInput: string): string => {
+    const lower = userInput.toLowerCase();
+    if (lower.includes('real estate') || lower.includes('course')) {
+      return 'We offer expert-led Real Estate courses including Masterclasses, Property Management, and Investment strategies.';
+    }
+    if (lower.includes('how to enroll') || lower.includes('enroll')) {
+      return 'To enroll, go to Course Programs and click "Enroll Now" on any course of your choice.';
+    }
+    if (lower.includes('help') || lower.includes('support')) {
+      return 'You can contact support through the "Need Help?" page or email us at support@buynclose.com.';
+    }
+    if (lower.includes('buynclose')) {
+      return 'BuyNClose is an educational platform helping you master Real Estate investment and management.';
+    }
+    return "I'm here to assist you with anything related to BuyNClose courses and platform.";
+  };
 
-const response = await getBotResponse(userMessage.text);
-const botMessage: Message = { sender: 'bot', text: response };
-setMessages((prev) => [...prev, botMessage]);
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!input.trim()) return;
 
-};
+    const userMessage: Message = { sender: 'user', text: input.trim() };
+    setMessages((prev) => [...prev, userMessage]);
 
-const getBotResponse = async (query: string): Promise<string> => { // Simulate an AI response for now. Replace this with a real API call if needed. if (query.toLowerCase().includes('course')) { return 'We offer programs in Real Estate Investment, Property Management, and Finance. Would you like to know more about any specific one?'; } else if (query.toLowerCase().includes('enroll')) { return 'You can enroll in any course from the Course Programs page. Simply click "Enroll Now" next to the course you're interested in.'; } else if (query.toLowerCase().includes('buynclose')) { return 'BuyNClose is a real estate learning platform designed to train students in property investment, sales, and management.'; } else if (query.toLowerCase().includes('help')) { return 'Sure! You can ask me about your course, how to navigate the portal, or anything related to real estate learning.'; } else { return 'I'm here to help with anything related to real estate education or this portal. Please rephrase your question or ask about a course!'; } };
+    const botReply: Message = { sender: 'bot', text: getBotResponse(input.trim()) };
+    setTimeout(() => {
+      setMessages((prev) => [...prev, botReply]);
+    }, 600);
 
-const handleKeyDown = (e: React.KeyboardEvent) => { if (e.key === 'Enter') { e.preventDefault(); sendMessage(); } };
+    setInput('');
+  };
 
-return ( <div className="min-h-screen flex flex-col"> <Header />
+  return (
+    <div className="min-h-screen flex flex-col bg-gray-50">
+      <Header />
 
-<main className="flex-1 p-4 bg-gray-50">
-    <div className="max-w-3xl mx-auto bg-white shadow rounded-lg p-4 h-[75vh] flex flex-col">
-      <h2 className="text-xl font-bold mb-4 text-blue-600">AI Assistance - Ask Me Anything</h2>
+      <main className="flex-1 p-4 max-w-4xl mx-auto w-full">
+        <h1 className="text-3xl font-bold mb-4 text-center text-blue-600">
+          AI Assistance – Ask Us Anything
+        </h1>
 
-      <div className="flex-1 overflow-y-auto border rounded p-3 bg-gray-100">
-        {messages.map((msg, i) => (
-          <div key={i} className={`mb-2 ${msg.sender === 'user' ? 'text-right' : 'text-left'}`}>
+        <div className="border rounded-lg bg-white shadow p-4 h-[500px] overflow-y-auto">
+          {messages.length === 0 && (
+            <p className="text-sm text-gray-400 text-center">
+              👋 Hi! I'm your AI guide. Ask anything about courses, enrollment, or real estate.
+            </p>
+          )}
+
+          {messages.map((msg, idx) => (
             <div
-              className={`inline-block px-4 py-2 rounded-lg max-w-xs ${
-                msg.sender === 'user' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'
+              key={idx}
+              className={`mb-3 flex ${
+                msg.sender === 'user' ? 'justify-end' : 'justify-start'
               }`}
             >
-              {msg.text}
+              <div
+                className={`max-w-xs px-4 py-2 rounded-lg text-sm ${
+                  msg.sender === 'user'
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-gray-200 text-gray-800'
+                }`}
+              >
+                {msg.text}
+              </div>
             </div>
-          </div>
-        ))}
-        <div ref={chatEndRef}></div>
-      </div>
+          ))}
 
-      <div className="mt-4 flex items-center">
-        <input
-          type="text"
-          className="flex-1 border rounded-l px-4 py-2 focus:outline-none focus:ring"
-          placeholder="Type your question here..."
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={handleKeyDown}
-        />
-        <button
-          onClick={sendMessage}
-          className="bg-blue-600 text-white px-4 py-2 rounded-r hover:bg-blue-700"
-        >
-          Send
-        </button>
-      </div>
+          <div ref={messagesEndRef} />
+        </div>
+
+        <form onSubmit={handleSubmit} className="mt-4 flex gap-2">
+          <input
+            type="text"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="Type your question..."
+            className="flex-1 p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none"
+          />
+          <button
+            type="submit"
+            className="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700"
+          >
+            Send
+          </button>
+        </form>
+      </main>
+
+      <Footer />
     </div>
-  </main>
-
-  <Footer />
-</div>
-
-); }
-
-
+  );
+}
